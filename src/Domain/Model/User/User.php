@@ -4,14 +4,27 @@ namespace Domain\Model\User;
 
 use DateTime;
 use Domain\Model\Event\UserRegisteredEvent;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'users')]
 class User
 {
-    private UserId $id;
+    #[ORM\Id, ORM\GeneratedValue, ORM\Embedded(class: UserId::class)]
+    protected UserId $id;
+
+    #[ORM\Embedded(class: Name::class)]
     private Name $name;
+
+    #[ORM\Embedded(class: Email::class)]
     private Email $email;
+
+    #[ORM\Embedded(class: Password::class)]
     private Password $password;
+
+    #[ORM\Column(type: 'datetime')]
     private DateTime $createdAt;
+
     private array $events = [];
 
     private function __construct(

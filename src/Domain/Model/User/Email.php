@@ -3,9 +3,12 @@
 namespace Domain\Model\User;
 
 use Domain\Exception\InvalidEmailException;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Embeddable]
 class Email
 {
+    #[ORM\Column(type: 'string')]
     private string $value;
 
     private function __construct(string $value)

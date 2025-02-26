@@ -20,7 +20,6 @@ class UserTest extends TestCase
         $password = Password::fromPlainPassword('StrongP@ss1');
 
         $user = User::register($userId, $name, $email, $password);
-        print_r($user);
         $this->assertSame($userId, $user->id());
         $this->assertSame($name, $user->name());
         $this->assertSame($email, $user->email());

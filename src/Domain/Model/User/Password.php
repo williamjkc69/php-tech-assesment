@@ -3,9 +3,12 @@
 namespace Domain\Model\User;
 
 use Domain\Exception\WeakPasswordException;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Embeddable]
 class Password
 {
+    #[ORM\Column(type: 'string')]
     private string $hashedValue;
     private const MIN_LENGTH = 8;
     private const UPPERCASE_PATTERN = '/[A-Z]/';

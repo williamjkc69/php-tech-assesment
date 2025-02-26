@@ -39,7 +39,13 @@ This repository contains a PHP application built without frameworks (except Doct
 /tests                  # Automated tests
   /Unit
   /Integration
+/public                # Public folder
+  index.php
 /config                 # Configuration files
+  bootstrap.php
+  cli-config.php
+/nginx                 # Server configuration
+  default.conf
 docker-compose.yml      # Docker configuration
 Dockerfile              # PHP environment setup
 Makefile                # Helper commands
@@ -165,11 +171,3 @@ The application includes both unit and integration tests:
 - Unit tests for entities and value objects
 - Unit tests for use cases
 - Integration tests for repository implementations
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request

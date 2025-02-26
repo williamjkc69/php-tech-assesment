@@ -30,11 +30,8 @@ class DoctrineUserRepository implements UserRepositoryInterface
 
     public function findByEmail(Email $email): ?User
     {
-        var_dump($email->value(), '1111');
         $test = $this->entityManager->getRepository(User::class)
             ->findOneBy(['email.value' => $email->value()]);
-        var_dump('hereA');
-        var_dump($test);
         return $test;
     }
 

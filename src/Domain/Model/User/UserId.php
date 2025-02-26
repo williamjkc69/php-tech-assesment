@@ -2,8 +2,12 @@
 
 namespace Domain\Model\User;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Embeddable]
 class UserId
 {
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
     private string $value;
 
     private function __construct(string $value)

@@ -23,6 +23,12 @@ class RegisterUserUseCaseTest extends TestCase
     private $eventDispatcher;
     private $registerUserUseCase;
 
+    public $fakeUser = [
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+        'password' => 'StrongP@ss1'
+    ];
+
     protected function setUp(): void
     {
         $this->userRepository = $this->createMock(UserRepositoryInterface::class);
@@ -32,7 +38,7 @@ class RegisterUserUseCaseTest extends TestCase
 
     public function testExecuteSuccess(): void
     {
-        $request = new RegisterUserRequest('John Doe', 'john@example.com', 'StrongP@ss1');
+        $request = new RegisterUserRequest($this->fakeUser['name'], $this->fakeUser['email'], $this->fakeUser['password']);
 
         $this->userRepository->method('findByEmail')->willReturn(null);
         $this->userRepository->expects($this->once())->method('save');
@@ -46,18 +52,23 @@ class RegisterUserUseCaseTest extends TestCase
 
     public function testExecuteUserAlreadyExists(): void
     {
-        $request = new RegisterUserRequest('John Doe', 'john@example.com', 'StrongP@ss1');
+        $request = new RegisterUserRequest($this->fakeUser['name'], $this->fakeUser['email'], $this->fakeUser['password']);
 
-        $this->userRepository->method('findByEmail')->willReturn(new User(
+        // Use the factory method to create a User instance
+        $user = User::register(
             UserId::generate(),
-            Name::fromString('John Doe'),
-            Email::fromString('john@example.com'),
-            Password::fromPlainPassword('StrongP@ss1'),
-            new \DateTime()
-        ));
+            Name::fromString($this->fakeUser['name']),
+            Email::fromString($this->fakeUser['email']),
+            Password::fromPlainPassword($this->fakeUser['password'])
+        );
 
+        // Mock the repository to return the User instance
+        $this->userRepository->method('findByEmail')->willReturn($user);
+
+        // Expect the UserAlreadyExistsException to be thrown
         $this->expectException(UserAlreadyExistsException::class);
 
+        // Execute the use case
         $this->registerUserUseCase->execute($request);
     }
 }

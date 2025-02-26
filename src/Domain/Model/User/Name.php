@@ -2,8 +2,12 @@
 
 namespace Domain\Model\User;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Embeddable]
 class Name
 {
+    #[ORM\Column(type: 'string')]
     private string $value;
     private const MIN_LENGTH = 2;
     private const MAX_LENGTH = 100;
