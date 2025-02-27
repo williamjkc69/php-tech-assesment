@@ -20,33 +20,41 @@ This repository contains a PHP application built without frameworks (except Doct
 ## Project Structure
 
 ```
-/app
-/src
-  /Domain               # Core business logic, entities, value objects
-    /Model
-      /User
-      /Event
-    /Repository
-    /Exception
-  /Application          # Use cases and application services
-    /UseCase
-    /DTO
-    /Event
-  /Infrastructure       # Implementation of interfaces defined in domain
-    /Persistence
-    /Event
-  /Presentation         # Controllers and API endpoints
-    /Controller
-/tests                  # Automated tests
-  /Unit
-  /Integration
-/public                # Public folder
-  index.php
-/config                 # Configuration files
-/nginx                 # Server configuration
-docker-compose.yml      # Docker configuration
-Dockerfile              # PHP environment setup
-Makefile                # Helper commands
+📦 
+├─ .gitignore
+├─ Dockerfile
+├─ Makefile
+├─ README.md
+├─ app
+├─ composer.json
+├─ composer.lock
+├─ config                      # Configuration files
+├─ docker-compose.yml
+├─ nginx                      # Server configuration
+├─ public                     # Public folder
+├─ src
+│  ├─ Application             # Use cases and application services
+│  │  ├─ DTO
+│  │  ├─ Event
+│  │  └─ UseCase
+│  │     └─ RegisterUser
+│  ├─ Domain                  # Core business logic, entities, value objects
+│  │  ├─ Exception
+│  │  ├─ Model
+│  │  │  ├─ Event
+│  │  │  └─ User
+│  │  └─ Repository
+│  ├─ Infrastructure          # Implementation of interfaces defined in domain
+│  │  ├─ Event
+│  │  └─ Persistence
+│  │     └─ Doctrine
+│  └─ Presentation            # Controllers and API endpoints
+│     └─ Controller
+└─ tests                      # Automated tests
+   └─ Unit
+      ├─ Application
+      ├─ Domain
+      └─ Integration
 ```
 
 ## Installation
@@ -172,5 +180,5 @@ The application includes both unit and integration tests:
 
 \
 \
-*William Urbina*
+*William Urbina*\
 *willliamjkc69@gmail.com*

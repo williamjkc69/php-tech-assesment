@@ -1,6 +1,5 @@
 <?php
 
-// app/helpers.php
 if (!function_exists('config')) {
     /**
      * Retrieves a configuration value.
