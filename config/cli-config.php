@@ -11,7 +11,7 @@ require_once 'bootstrap.php';
 
 // Load Doctrine configuration
 $paths = [__DIR__ . '/../src/Domain/Model']; // Path to your entities
-$isDevMode = true;
+$isDevMode = env('APP_ENV') === 'development';
 
 $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 

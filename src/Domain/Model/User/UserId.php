@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Embeddable]
 class UserId
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
+    #[ORM\Id, ORM\Column(type: 'string')]
     private string $value;
 
     private function __construct(string $value)
@@ -17,7 +17,7 @@ class UserId
 
     public static function generate(): self
     {
-        return new self(uniqid('user_', true));
+        return new self(uniqid('user_'));
     }
 
     public static function fromString(string $value): self

@@ -14,7 +14,7 @@ use Domain\Model\Event\UserRegisteredEvent;
 
 // Setup Doctrine
 $paths = [__DIR__ . '/../src/Infrastructure/Persistence/Doctrine/Mapping'];
-$isDevMode = true;
+$isDevMode = env('APP_ENV') === 'development';
 
 $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 

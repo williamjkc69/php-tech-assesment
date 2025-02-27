@@ -1,7 +1,5 @@
 <?php
 
-// tests/Unit/Application/RegisterUserUseCaseTest.php
-
 namespace Tests\Unit\Application;
 
 use PHPUnit\Framework\TestCase;

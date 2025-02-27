@@ -32,5 +32,20 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  db_test:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_password
+    ports:
+      - "3307:3306" # Usar un puerto diferente al de la base de datos principal
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
 volumes:
   db_data:

@@ -1,7 +1,5 @@
 <?php
 
-// tests/Unit/Domain/PasswordTest.php
-
 namespace Tests\Unit\Domain;
 
 use PHPUnit\Framework\TestCase;

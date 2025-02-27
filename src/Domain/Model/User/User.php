@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'users')]
 class User
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Embedded(class: UserId::class)]
+    #[ORM\Id, ORM\Embedded(class: UserId::class)]
     protected UserId $id;
 
     #[ORM\Embedded(class: Name::class)]

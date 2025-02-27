@@ -61,6 +61,8 @@ cd php-tech-assessment
 2. Create a `.env` file in the root directory:
 
 ```
+APP_ENV=development
+
 # Database
 MYSQL_DATABASE=user_db
 MYSQL_ROOT_PASSWORD=password
