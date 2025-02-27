@@ -1,5 +1,8 @@
 <?php
 
+// helpers
+require __DIR__ . '/../app/helpers.php';
+
 // Load bootstrap
 $container = require __DIR__ . '/../config/bootstrap.php';
 

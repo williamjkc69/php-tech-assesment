@@ -20,6 +20,7 @@ This repository contains a PHP application built without frameworks (except Doct
 ## Project Structure
 
 ```
+/app
 /src
   /Domain               # Core business logic, entities, value objects
     /Model
@@ -42,10 +43,7 @@ This repository contains a PHP application built without frameworks (except Doct
 /public                # Public folder
   index.php
 /config                 # Configuration files
-  bootstrap.php
-  cli-config.php
 /nginx                 # Server configuration
-  default.conf
 docker-compose.yml      # Docker configuration
 Dockerfile              # PHP environment setup
 Makefile                # Helper commands
@@ -56,8 +54,8 @@ Makefile                # Helper commands
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/php-clean-architecture.git
-cd php-clean-architecture
+git clone https://github.com/williamjkc69/php-tech-assessment.git
+cd php-tech-assessment
 ```
 
 2. Create a `.env` file in the root directory:
@@ -129,8 +127,6 @@ docker-compose exec app php vendor/bin/phpunit
 - `make down`: Stop Docker containers
 - `make setup`: Install dependencies and set up database
 - `make test`: Run PHPUnit tests
-- `make lint`: Run PHP CodeSniffer to check code style
-- `make fix-lint`: Automatically fix code style issues
 
 ## Technical Implementation Details
 

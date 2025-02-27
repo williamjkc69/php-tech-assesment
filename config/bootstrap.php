@@ -19,12 +19,12 @@ $isDevMode = true;
 $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 
 $connectionParams = [
-    'driver' => 'pdo_mysql',
-    'host' => 'db',
-    'dbname' => 'user_db',
-    'user' => 'app_user',
-    'password' => 'app_password',
-    'charset' => 'utf8mb4'
+    'driver' => config('db.driver'),
+    'host' => config('db.host'),
+    'dbname' => config('db.dbname'),
+    'user' => config('db.user'),
+    'password' => config('db.password'),
+    'charset' => config('db.charset')
 ];
 
 $conn = DriverManager::getConnection($connectionParams, $config);
