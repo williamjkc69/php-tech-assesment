@@ -16,6 +16,10 @@ class DoctrineUserRepositoryTest extends TestCase
     private $entityManager;
     private $userRepository;
 
+    /**
+     * Set up the test environment.
+     * Initializes the EntityManager and UserRepository, and cleans the database.
+     */
     protected function setUp(): void
     {
         // Configuring the EntityManager for testing
@@ -26,9 +30,13 @@ class DoctrineUserRepositoryTest extends TestCase
         $this->entityManager->getConnection()->executeQuery('DELETE FROM users');
     }
 
+    /**
+     * Tests saving a user to the repository and finding it by ID.
+     * Verifies that the user is saved and retrieved correctly.
+     */
     public function testSaveAndFindUser(): void
     {
-        // Create an user
+        // Create a user
         $userId = UserId::fromString("user_12345");
         $name = Name::fromString('John Doe');
         $email = Email::fromString('john@example.com');
@@ -42,16 +50,20 @@ class DoctrineUserRepositoryTest extends TestCase
         // Search user by ID
         $foundUser = $this->userRepository->findById($userId);
 
-        // Verify that the user has been saved and found correctly.
+        // Verify that the user has been saved and found correctly
         $this->assertNotNull($foundUser);
         $this->assertSame($userId->value(), $foundUser->id()->value());
         $this->assertSame('John Doe', $foundUser->name()->value());
         $this->assertSame('john@example.com', $foundUser->email()->value());
     }
 
+    /**
+     * Tests finding a user by email.
+     * Verifies that the user is retrieved correctly using their email address.
+     */
     public function testFindByEmail(): void
     {
-        // Create an user
+        // Create a user
         $userId = UserId::fromString("user_12345");
         $name = Name::fromString('Jane Doe');
         $email = Email::fromString('jane@example.com');
@@ -65,16 +77,19 @@ class DoctrineUserRepositoryTest extends TestCase
         // Search user by email
         $foundUser = $this->userRepository->findByEmail(Email::fromString('jane@example.com'));
 
-        // Verify that the user was found correctly
         $this->assertNotNull($foundUser);
         $this->assertSame($userId->value(), $foundUser->id()->value());
         $this->assertSame('Jane Doe', $foundUser->name()->value());
         $this->assertSame('jane@example.com', $foundUser->email()->value());
     }
 
+    /**
+     * Tests deleting a user from the repository.
+     * Verifies that the user is deleted and can no longer be found.
+     */
     public function testDeleteUser(): void
     {
-        // Create an user
+        // Create a user
         $userId = UserId::fromString("user_12345");
         $name = Name::fromString('Alice Smith');
         $email = Email::fromString('alice@example.com');

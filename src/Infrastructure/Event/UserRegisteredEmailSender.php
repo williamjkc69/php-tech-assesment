@@ -8,6 +8,13 @@ use Domain\Model\Event\UserRegisteredEvent;
 
 class UserRegisteredEmailSender implements EventListener
 {
+    /**
+     * Handles the domain event by sending a welcome email to the newly registered user.
+     * Only processes events of type `UserRegisteredEvent`.
+     *
+     * @param DomainEvent $event The domain event to handle.
+     * @return void
+     */
     public function handle(DomainEvent $event): void
     {
         if (!$event instanceof UserRegisteredEvent) {

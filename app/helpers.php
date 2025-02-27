@@ -3,23 +3,23 @@
 // app/helpers.php
 if (!function_exists('config')) {
     /**
-     * Obtiene un valor de configuración.
+     * Retrieves a configuration value.
      *
-     * @param string $key La clave de configuración (por ejemplo, 'db.driver').
-     * @param mixed $default Valor por defecto si la clave no existe.
+     * @param string $key The configuration key (e.g., 'db.driver').
+     * @param mixed $default Default value if the key does not exist.
      * @return mixed
      */
     function config(string $key, $default = null)
     {
         static $config = [];
 
-        // Divide la clave en partes (por ejemplo, 'db.driver' => ['db', 'driver'])
+        // Split the key into parts (e.g., 'db.driver' => ['db', 'driver'])
         $keys = explode('.', $key);
 
-        // Nombre del archivo de configuración (primera parte de la clave)
+        // Configuration file name (first part of the key)
         $file = $keys[0];
 
-        // Carga el archivo de configuración si no está cargado
+        // Load the configuration file if not already loaded
         if (!isset($config[$file])) {
             $configPath = __DIR__ . '/../config/' . $file . '.php';
             if (file_exists($configPath)) {
@@ -29,7 +29,7 @@ if (!function_exists('config')) {
             }
         }
 
-        // Obtiene el valor de la configuración
+        // Retrieve the configuration value
         $value = $config[$file];
         foreach (array_slice($keys, 1) as $subKey) {
             if (isset($value[$subKey])) {
@@ -45,10 +45,10 @@ if (!function_exists('config')) {
 
 if (!function_exists('env')) {
     /**
-     * Obtiene un valor de entorno.
+     * Retrieves an environment value.
      *
-     * @param string $key La clave de la variable de entorno.
-     * @param mixed $default Valor por defecto si la clave no existe.
+     * @param string $key The environment variable key.
+     * @param mixed $default Default value if the key does not exist.
      * @return mixed
      */
     function env(string $key, $default = null)

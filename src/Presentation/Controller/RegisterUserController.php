@@ -12,11 +12,25 @@ class RegisterUserController
 {
     private RegisterUserUseCase $registerUserUseCase;
 
+    /**
+     * Constructor for RegisterUserController.
+     *
+     * @param RegisterUserUseCase $registerUserUseCase The use case for registering a user.
+     */
     public function __construct(RegisterUserUseCase $registerUserUseCase)
     {
         $this->registerUserUseCase = $registerUserUseCase;
     }
 
+    /**
+     * Handles the user registration request.
+     *
+     * Validates the request data, creates a RegisterUserRequest DTO, and executes the use case.
+     * Returns a JSON response indicating success or failure.
+     *
+     * @param array $requestData The request data containing name, email, and password.
+     * @return string A JSON-encoded response indicating success or failure.
+     */
     public function register(array $requestData): string
     {
         try {
@@ -54,6 +68,13 @@ class RegisterUserController
         }
     }
 
+    /**
+     * Generates an error response in JSON format.
+     *
+     * @param string $message The error message.
+     * @param int $code The HTTP status code.
+     * @return string A JSON-encoded error response.
+     */
     private function errorResponse(string $message, int $code): string
     {
         http_response_code($code);

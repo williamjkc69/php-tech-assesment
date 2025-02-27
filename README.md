@@ -1,4 +1,4 @@
-# PHP Clean Architecture User Registration Application
+# PHP Challenge (User Registration Application)
 
 This repository contains a PHP application built without frameworks (except Doctrine ORM) that demonstrates Domain-Driven Design (DDD), Clean Architecture, and SOLID principles. The application handles user registration with proper validation, persistence, and event handling.
 
@@ -169,3 +169,8 @@ The application includes both unit and integration tests:
 - Unit tests for entities and value objects
 - Unit tests for use cases
 - Integration tests for repository implementations
+
+\
+\
+*William Urbina*
+*willliamjkc69@gmail.com*

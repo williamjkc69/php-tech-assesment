@@ -12,11 +12,20 @@ use Domain\Exception\UserAlreadyExistsException;
 use Application\DTO\UserResponseDTO;
 use Application\Event\EventDispatcher;
 
+/**
+ * Use case for registering a new user in the system.
+ */
 class RegisterUserUseCase
 {
     private UserRepositoryInterface $userRepository;
     private EventDispatcher $eventDispatcher;
 
+    /**
+     * Creates a new register user use case.
+     *
+     * @param UserRepositoryInterface $userRepository Repository for user persistence
+     * @param EventDispatcher $eventDispatcher Dispatcher for domain events
+     */
     public function __construct(
         UserRepositoryInterface $userRepository,
         EventDispatcher $eventDispatcher
@@ -25,6 +34,13 @@ class RegisterUserUseCase
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    /**
+     * Executes the user registration process.
+     *
+     * @param RegisterUserRequest $request The registration request data
+     * @return UserResponseDTO Data transfer object with the new user's information
+     * @throws UserAlreadyExistsException When the email is already in use
+     */
     public function execute(RegisterUserRequest $request): UserResponseDTO
     {
         $email = Email::fromString($request->email());
